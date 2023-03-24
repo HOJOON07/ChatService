@@ -6,21 +6,52 @@ import { RiChatNewLine } from "react-icons/ri";
 import { HiOutlineMusicNote } from "react-icons/hi";
 import { AiOutlineSetting } from "react-icons/ai";
 
-const Base = styled.div``;
+const Base = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 12px;
+  right: 12px;
+  height: 36px;
+  box-sizing: border-box;
+  background-color: #fff;
+`;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+`;
 
 const ActionItemContainer = styled.div``;
 
-const ActionItem = styled.div``;
+const ActionItem = styled.span`
+  font-size: 20px;
+  padding: 0 20px;
+`;
 
-const TopNavigation: React.FC = () => {
+interface Props {
+  title: string;
+}
+
+const TopNavigation: React.FC<Props> = ({ title }) => {
   return (
     <Base>
-      <Title></Title>
+      <Title>{title}</Title>
       <ActionItemContainer>
         <ActionItem>
           <BiSearchAlt2></BiSearchAlt2>
+        </ActionItem>
+        <ActionItem>
+          <RiChatNewLine></RiChatNewLine>
+        </ActionItem>
+        <ActionItem>
+          <HiOutlineMusicNote></HiOutlineMusicNote>
+        </ActionItem>
+        <ActionItem>
+          <AiOutlineSetting></AiOutlineSetting>
         </ActionItem>
       </ActionItemContainer>
     </Base>

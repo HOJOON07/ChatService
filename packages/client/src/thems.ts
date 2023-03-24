@@ -18,3 +18,5 @@ const theme: Theme = {
     white: "#fff",
   },
 };
+
+export default theme;

@@ -29,7 +29,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-sequelize.sync({ force: true });
+sequelize.sync({ force: false });
 
 app.use("/", routes);
 

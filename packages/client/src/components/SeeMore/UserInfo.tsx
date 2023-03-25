@@ -7,9 +7,7 @@ const Base = styled.div`
   margin-top: 64px;
 `;
 
-const ImageWrapper = styled.div`
-  /* margin-right: 20px; */
-`;
+const ImageWrapper = styled.div``;
 
 const Image = styled.img`
   width: 80px;

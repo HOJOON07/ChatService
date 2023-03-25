@@ -17,15 +17,13 @@ const root = ReactDOM.createRoot(
 const client = new QueryClient();
 
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <QueryClientProvider client={client}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </QueryClientProvider>
-  </React.StrictMode>
+  </BrowserRouter>
 );
 
 reportWebVitals();

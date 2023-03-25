@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled/macro";
 import { Link } from "react-router-dom";
-import theme from "../../thems";
 import { useTheme } from "@emotion/react";
 
 const StyledLink = styled(Link)<{ color: string }>`

@@ -1,15 +1,16 @@
 import React from "react";
-import styled from "@emotion/styled/macro";
+import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import TopNavigation from "../components/TopNavigation";
+
+import Friend from "../components/FriendList/Friend";
 import BottomNavigation from "../components/BottomNavigation";
-import Profile from "../components/Profile";
+import TopNavigation from "../components/TopNavigation";
 import FriendList from "../components/FriendList";
 import { useMutation, useQuery } from "react-query";
 import { fetchMyProfile, fetchUserList } from "../apis/userApi";
 import { AxiosError, AxiosResponse } from "axios";
-import { IProfile, IUser, IRoom } from "../types/index";
-import Friend from "../components/FriendList/Friend";
+import { IProfile, IRoom, IUser } from "../types";
+import Profile from "../components/Profile";
 import {
   fetchChatRoomList,
   makeChatRoom,
@@ -34,8 +35,9 @@ const Summary = styled.small`
   font-size: 12px;
 `;
 
-const Friends: React.FC = () => {
+const FriendsPage: React.FC = () => {
   const navigate = useNavigate();
+
   const { data: profileData } = useQuery<AxiosResponse<IProfile>, AxiosError>(
     "fetchMyProfile",
     fetchMyProfile
@@ -56,11 +58,10 @@ const Friends: React.FC = () => {
   );
 
   const handleChatRoomCreate = (opponentId: string) => {
-    //먼저 존재하는 채팅방을 확인해야 함
     const chatRoom = chatRoomListData?.data.find(
       (chatRoom) => chatRoom.opponentId === opponentId
     );
-    //존재하는 룸이 있으면 거기로 이동.
+
     if (chatRoom) {
       navigate(`/rooms/${chatRoom.id}`);
     } else {
@@ -70,22 +71,21 @@ const Friends: React.FC = () => {
         },
         {
           onSuccess: (data) => {
-            navigate(`/room/${data.data.id}`); //s없어도 되나?
+            navigate(`/rooms/${data.data.id}`);
           },
         }
       );
     }
   };
+
   return (
     <Base>
       <Container>
-        <TopNavigation title="친구"></TopNavigation>
-        {profileData && (
-          <Profile username={profileData.data.username}></Profile>
-        )}
+        <TopNavigation title="친구" />
+        {profileData && <Profile username={profileData.data.username} />}
         {userData && (
           <>
-            <Summary>친구 : {userData.data.count}</Summary>
+            <Summary>친구 {userData.data.count}</Summary>
             <FriendList>
               {userData.data.rows.map((row) => (
                 <Friend
@@ -93,16 +93,15 @@ const Friends: React.FC = () => {
                   username={row.username}
                   thumbnailImage={row.thumbnailImageUrl}
                   onClick={() => handleChatRoomCreate(row.id)}
-                ></Friend>
+                />
               ))}
             </FriendList>
           </>
         )}
-
-        <BottomNavigation></BottomNavigation>
+        <BottomNavigation />
       </Container>
     </Base>
   );
 };
 
-export default Friends;
+export default FriendsPage;

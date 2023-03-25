@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import session from "express-session";
 import cors from "cors";
+
 import sequelize from "./sequelize";
 import routes from "./routes";
 import socket from "./socket";

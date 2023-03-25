@@ -1,17 +1,17 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import styled from "@emotion/styled/macro";
 
-const Base = styled.div`
+const Base = styled.ul`
   list-style: none;
   margin: 0;
   padding: 36px 0 64px 0;
 `;
 
-type Children = {
-  children: ReactNode;
-};
+interface Props {
+  children?: React.ReactNode | React.ReactNode[];
+}
 
-const ChatRoomList: React.FC<Children> = ({ children }: Children) => {
+const ChatRoomList: React.FC<Props> = ({ children }) => {
   return <Base>{children}</Base>;
 };
 

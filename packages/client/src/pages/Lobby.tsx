@@ -70,9 +70,9 @@ const Lobby: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const mutation = useMutation((username: string) => login({ username }));
-
   const [username, setUsername] = useState<string>("");
+
+  const mutation = useMutation((username: string) => login({ username }));
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);

@@ -22,7 +22,7 @@ const SeeMore: React.FC = () => {
     <Base>
       <Container>
         <TopNavigation title="더보기"></TopNavigation>
-        <UserInfo username="김호 준" telNo="010-4140-5909"></UserInfo>
+        <UserInfo username="김호준" telNo="010-4140-5909"></UserInfo>
         <IconButtonList></IconButtonList>
         <BottomNavigation></BottomNavigation>
       </Container>

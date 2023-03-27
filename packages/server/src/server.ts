@@ -7,6 +7,7 @@ import routes from "./routes";
 import socket from "./socket";
 
 const FileStore = require("session-file-store")(session);
+const models = require("../models");
 
 const app: Application = express();
 
@@ -29,12 +30,36 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-sequelize.sync({ force: false });
+// sequelize.sync({ force: true });
 
 app.use("/", routes);
 
 const server = app.listen(8000, () => {
   console.log(`server is running 8000port `);
+  models.sequelize
+    .sync()
+    .then(() => {
+      console.log("DB연결 성공!");
+    })
+    .catch((err: any) => {
+      console.error(err);
+      console.log("DB 연결 에러ㅜ");
+      process.exit();
+    });
 });
+
+// app.listen(port, () => {
+//   console.log("서버가 실행되고 있습니다.");
+//   models.sequelize
+//     .sync()
+//     .then(() => {
+//       console.log("DB연결 성공!");
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       console.log("DB 연결 에러ㅜ");
+//       process.exit();
+//     });
+// });
 
 socket(server, app, sessionMiddleware);

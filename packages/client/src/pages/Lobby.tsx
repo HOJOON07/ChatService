@@ -81,6 +81,7 @@ const Lobby: React.FC = () => {
   const handleLogin = () => {
     mutation.mutate(username, {
       onSuccess: (data) => {
+        console.log(data);
         if (data?.statusText === "OK") {
           navigate("/friends");
         }

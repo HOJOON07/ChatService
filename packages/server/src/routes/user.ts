@@ -92,7 +92,7 @@ router.post("/login", async (req, res) => {
     req.session.userId = userId;
     // @ts-ignore
     req.session.isLogged = true;
-
+    console.log("!!@!@!@");
     req.session.save(() => {
       res.json({
         statusText: "OK",

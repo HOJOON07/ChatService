@@ -23,6 +23,8 @@ router.get("/", async (req, res) => {
   } catch (e) {}
 });
 
+router.post("'/");
+
 router.post("/mock", async (req, res) => {
   try {
     await User.create({
